@@ -6,43 +6,53 @@
 
 static void draw_set_color_prefix(cairo_t* cairo_conn, struct tag* tag)
 {
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		tag->color_prefix[0] / 255.0,
 		tag->color_prefix[1] / 255.0,
-		tag->color_prefix[2] / 255.0);
+			      tag->color_prefix[2] / 255.0,
+			      0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 }
 
 static void draw_set_color_postfix(cairo_t* cairo_conn, struct tag* tag)
 {
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		tag->color_postfix[0] / 255.0,
 		tag->color_postfix[1] / 255.0,
-		tag->color_postfix[2] / 255.0);
+			      tag->color_postfix[2] / 255.0,
+			      0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 }
 
 static void draw_set_color_text(cairo_t* cairo_conn, struct tag* tag)
 {
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		tag->color_text[0] / 255.0,
 		tag->color_text[1] / 255.0,
-		tag->color_text[2] / 255.0);
+			      tag->color_text[2] / 255.0,
+			      0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 }
 
 static void draw_set_color_line(cairo_t* cairo_conn, struct tag* tag)
 {
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		tag->color_line[0] / 255.0,
 		tag->color_line[1] / 255.0,
-		tag->color_line[2] / 255.0);
+			     tag->color_line[2] / 255.0,
+			     0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 }
 
 static void draw_set_color_background(cairo_t* cairo_conn,
 	struct tag* tag)
 {
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		tag->color_background[0] / 255.0,
 		tag->color_background[1] / 255.0,
-		tag->color_background[2] / 255.0);
+			     tag->color_background[2] / 255.0,
+			     0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 }
 
 static int draw_txt(struct properties* properties,
@@ -261,10 +271,12 @@ void draw(struct properties* properties)
 {
 	cairo_t* cairo_conn;
 	cairo_conn = properties->cairo_conn;
-	cairo_set_source_rgb(cairo_conn,
+	cairo_set_source_rgba(cairo_conn,
 		properties->config.bar_color_background[0] / 255.0,
 		properties->config.bar_color_background[1] / 255.0,
-		properties->config.bar_color_background[2] / 255.0);
+			      properties->config.bar_color_background[2] / 255.0,
+			      0.8);
+	cairo_set_operator(cairo_conn, CAIRO_OPERATOR_SOURCE);
 	cairo_paint(cairo_conn);
 	draw_bounds(properties, properties->threads_total, 1);
 	draw_bounds(properties, properties->threads_total, -1);
